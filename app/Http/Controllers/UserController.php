@@ -77,9 +77,11 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = User::findOrFail($id);
+        $user1 = User::where('id', $id)->firstOrFail();
+        $user2 = User::where('id', $request->only('id'))->firstOrFail();
 
-        $user->relations()->attach($request->only('id'));
+        $user1->relations()->attach($user2->id);
+        $user2->relations()->attach($user1->id);       
 
         return back(); 
     }

@@ -10,7 +10,5 @@ class PageController extends Controller
     	return view('home');
     }
 
-    public function relations() {
-    	return view('relations');
-    }
+ 
 }
