@@ -19,5 +19,3 @@ Route::get('stats', ['as' => 'stats', 'uses' => 'UserController@stats']);
 Route::post('search', ['uses' => 'UserController@search','as' => 'search']);
 
 Route::resource('users', 'UserController');
-
-URL::forceSchema('https');
