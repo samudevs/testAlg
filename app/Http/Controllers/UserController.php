@@ -77,11 +77,9 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user1 = User::where('id', $id)->firstOrFail();
-        $user2 = User::where('id', $request->only('id'))->firstOrFail();
+            $user1 = User::where('id', $id)->firstOrFail();
 
-        $user1->relations()->attach($user2->id);
-        $user2->relations()->attach($user1->id);       
+            $user1->createRelation($request->only('id'));  
 
         return back(); 
     }
@@ -108,5 +106,23 @@ class UserController extends Controller
         }
 
         return redirect('users/' . $user->id);
+    }
+
+    public function stats() {
+        $relations = User::withCount('relations')->orderBy('relations_count')->get();
+        $most = array_count_values($relations->pluck('relations_count')->toArray());
+        arsort($most);
+        $most = collect(array_slice(array_keys($most), 0, 1, true));
+
+
+        $stats = collect([
+            'count' => $relations->pluck('relations_count')->sum() / 2,
+            'avg' => $relations->avg('relations_count'),
+            'max' => [$relations->last()->name, $relations->last()->relations_count],
+            'min' => [$relations->first()->name, $relations->first()->relations_count],
+            'most' => $most[0]
+        ]);
+
+        return view('users.stats', compact('stats'));
     }
 }

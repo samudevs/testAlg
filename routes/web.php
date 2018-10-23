@@ -14,7 +14,7 @@
 Route::get('/', ['as' => 'home', 'uses' => 'UserController@index']);
 
 
-Route::get('/relations', ['as' => 'relations', 'uses' => 'PageController@relations']);
+Route::get('stats', ['as' => 'stats', 'uses' => 'UserController@stats']);
 
 Route::post('search', ['uses' => 'UserController@search','as' => 'search']);
 

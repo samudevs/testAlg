@@ -7,6 +7,8 @@
 <body>
 	<header>
 		<a href="{{ route('users.index') }}">View Users</a>
+		<a href="{{ route('stats') }}">Stats</a>
+		<a href="https://github.com/samudevs/testAlg">Source</a>
 	</header>
 	<main>
 @yield('content')

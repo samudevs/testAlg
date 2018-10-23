@@ -13,4 +13,12 @@ class User extends Model
     public function relations() {
     	return $this->belongsToMany(User::class, 'relations', 'user1_id', 'user2_id');
     }
+
+    public function createRelation($id) {
+    	$user = User::where('id', $id)->firstOrFail();
+
+    	$this->relations()->attach($id);
+    	$user->relations()->attach($this->id);
+
+    }
 }

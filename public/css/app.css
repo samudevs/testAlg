@@ -30,6 +30,10 @@ li {
 	margin-left: 20px;
 }
 
+dd, dl {
+	margin-left: 50px;
+}
+
 form {
 	margin: 20px;
 }
@@ -40,7 +44,8 @@ form {
 	margin: 20px;
 }
 
-.user p, .user li {
+
+.user p, .user li, dd {
 	display: inline-block;
 	background-color: black;
 	color: white;
@@ -68,13 +73,16 @@ header {
 }
 
 header a {
-		color: white;
+	color: white;
 	font-style: bold;
 }
 
 main {
 	padding: 5px 25px 25px 25px;
-	
+}
+
+dl span {
+	margin-left: 25px;
 }
 
 footer {
